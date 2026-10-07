@@ -108,15 +108,14 @@ Execute the end-to-end migration of legacy REST `database-service` (port 8088) c
      - Check `actionables`: Verify `actionable_status`, `created_by`, `action_metadata`.
      - Check `actionables_steps`: Verify `status`, `step_no`, `ref_users_in_record_id_owner`, and `chk_at_most_one_assignment`.
      - Check extension tables (`requests_services`, `requests_staffing`, `requests_collaborators`): Verify linkage to request ID.
-   - Test Data Cleanup in Dev DB:
-     - If manual mutations were executed in `zarthi_dev` via Ruru, clean up generated test rows to prevent cluttering shared environments:
-       Delete or cascade test rows by `in_record_id` created during the session.
+   - Test Data Policy:
+     - Row creation in `zarthi_dev` during manual Ruru testing is normal and expected. Manual database cleanup is NOT mandated.
 4. Run the automated test suite:
    ```powershell
    mvn test -pl <service-directory>
    ```
 
-**Completion Criterion**: All document parsing and endpoint unit tests pass with zero failures and zero errors (`BUILD SUCCESS`). Direct database queries confirm that mutations create or update rows in underlying tables with correct column values, respecting all triggers and check constraints, with any exploratory Ruru test rows cleaned up.
+**Completion Criterion**: All document parsing and endpoint unit tests pass with zero failures and zero errors (`BUILD SUCCESS`). Direct database queries confirm that mutations create or update rows in underlying tables with correct column values, respecting all triggers and check constraints.
 
 ---
 

@@ -156,8 +156,10 @@ SELECT in_record_id, step_no, status, ref_users_in_record_id_owner, ref_requests
 FROM actionables_steps WHERE ref_actionables_in_record_id = <actionable_id>;
 ```
 
-### Dev Database Cleanup (Crucial)
-Mutations executed in Ruru persist actual rows in `zarthi_dev`. Clean up test records after verification to prevent polluting the development database:
+### Dev Database Notes & Cleanup Policy
+- **Row Creation is Expected**: Executing mutations in Ruru persists real rows in `zarthi_dev`. This is expected behavior during development and smoke testing.
+- **Cleanup is NOT Mandated**: Manual database cleanup of test records in `zarthi_dev` is **not required**.
+- **Optional Cleanup Query (Reference Only)**: If you ever want to clean up specific test records you created, use this cascade deletion order:
 ```sql
 DELETE FROM requests_services WHERE ref_requests_record_id = <test_request_id>;
 DELETE FROM requests_staffing WHERE ref_requests_record_id = <test_request_id>;

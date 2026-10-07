@@ -92,11 +92,10 @@ SET app.is_cds = 'true';
    SELECT * FROM requests_collaborators WHERE ref_requests_in_record_id = <request_id>;
    ```
 
-### Test Data Cleanup Protocol
-When running manual tests in `zarthi_dev` via Ruru:
-- Mutations persist actual rows in PostgreSQL.
-- Check generated `in_record_id` values from GraphQL responses.
-- Clean up test records after verification to prevent polluting shared development environments:
+### Test Data Policy & Optional Cleanup Reference
+- **Row Creation is Expected**: Testing queries or mutations in Ruru persists real rows in `zarthi_dev`. This is expected behavior during development.
+- **Cleanup is NOT Mandated**: Manual database cleanup of test records in `zarthi_dev` is **not required**.
+- **Optional Cleanup Reference**: If you ever want to clean up specific test records you created, use this cascade deletion order:
   ```sql
   DELETE FROM requests_services WHERE ref_requests_record_id = <test_request_id>;
   DELETE FROM requests_staffing WHERE ref_requests_record_id = <test_request_id>;
