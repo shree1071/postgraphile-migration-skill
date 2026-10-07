@@ -16,7 +16,7 @@ Execute the end-to-end migration of legacy REST `database-service` (port 8088) c
 3. Audit every database entity, field, and request/response payload touched.
 4. Map all entities directly to underlying PostgreSQL database tables.
    - Reference: See [INVARIANTS.md](INVARIANTS.md) for table access rules.
-5. Inspect `postgraphile-v5/schema.graphql` to verify field names, scalar types, and required non-null constraints for all mapped tables.
+5. Inspect `postgraphile-v5/schema.graphql` or open the interactive Docs explorer in Ruru (`http://localhost:4000/ruru` or `https://api.dev.zarthi.com/graphql`) to verify field names, scalar types, and required non-null constraints for all mapped tables.
 
 **Completion Criterion**: Produce an exhaustive field-to-table mapping for the target endpoint. Every field maps strictly to an underlying table column, with zero references to database views.
 

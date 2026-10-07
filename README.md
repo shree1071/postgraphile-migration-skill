@@ -20,7 +20,22 @@ The skill guides the assistant through schema mapping, GraphQL document reuse, J
 
 ---
 
-## 2. Architecture Shift
+## 2. PostGraphile Queries & Schema Documentation Paths
+
+Use these locations to inspect schema types, existing queries, and interactive documentation:
+
+| Resource | Path / URL | Purpose |
+|---|---|---|
+| **Full Schema Definition** | `postgraphile-v5/schema.graphql` | 4.5 MB authoritative schema defining every type, query, mutation, input, filter, and scalar. |
+| **Interactive Docs (Ruru / GraphiQL)** | `http://localhost:4000/ruru` or `https://api.dev.zarthi.com/graphql` | Interactive browser explorer. Click the **"Docs"** / **"Explorer"** pane in the top-right to search any query, mutation, field, or argument. |
+| **Objectives Documents** | `backend/services/objectives/src/main/resources/graphql-documents/` | Existing `.graphql` files for tasks, actionables, services, staffing, and collaborators. |
+| **Database Module Documents** | `backend/services/database/src/main/resources/graphql-documents/` | 16+ core database queries and mutations. |
+| **Users Module Documents** | `backend/services/users/src/main/resources/graphql-documents/` | User lookup and role allocation documents. |
+| **PostGraphile Configuration** | `postgraphile-v5/graphile.config.ts` | Inflector rules, smart tags, plugins, and connection settings. |
+
+---
+
+## 3. Architecture Shift
 
 ```
 [Legacy Flow]
